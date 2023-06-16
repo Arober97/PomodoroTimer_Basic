@@ -20,6 +20,7 @@ task = ""
 
 last_music_index = 0
 
+
 def create_speech_bubble(cat, task):
     if len(task) > 10:
         task = task[:10] + '...'
@@ -28,27 +29,31 @@ def create_speech_bubble(cat, task):
     cat[2] = ">" + " " * padding_left + "[" + task + "]" + " " * padding_right + "<"
     return cat
 
+
+def load_and_play_sound(filename):
+    if os.path.exists(filename):
+        pygame.mixer.music.load(filename)
+        pygame.mixer.music.play()
+        pygame.mixer.music.set_volume(1.0)
+    else:
+        raise FileNotFoundError(f"The file {filename} does not exist. Please make sure the file is in the correct directory.")
+
+
 def start_timer(duration, break_duration):
     global work_timer_done_event
     global break_timer_done_event
 
     while True:
-        pygame.mixer.music.load('ding.mp3')
-        pygame.mixer.music.play()
-        pygame.mixer.music.set_volume(1.0)
+        load_and_play_sound('ding.mp3')
         time.sleep(duration)
         work_timer_done_event.set()
-        pygame.mixer.music.load('ding.mp3')
-        pygame.mixer.music.play()
-        pygame.mixer.music.set_volume(1.0)
+        load_and_play_sound('ding.mp3')
         time.sleep(1)
         pygame.mixer.music.stop()
         os.system('cls' if os.name == 'nt' else 'clear')
         print("\n".join(SLEEPING_CAT))
         time.sleep(1)
-        pygame.mixer.music.load('ding.mp3')
-        pygame.mixer.music.play()
-        pygame.mixer.music.set_volume(1.0)
+        load_and_play_sound('ding.mp3')
         time.sleep(break_duration)
         break_timer_done_event.set()
         pygame.mixer.music.stop()
@@ -59,11 +64,13 @@ def start_timer(duration, break_duration):
         work_timer_done_event.clear()
         break_timer_done_event.clear()
 
+
 def set_task():
     global task
     task = input("What is your focus task? ")
     print("You are now working on: ", task)
     return task
+
 
 def play_music(directory):
     global last_music_index
@@ -80,6 +87,7 @@ def play_music(directory):
 
         time.sleep(1)
 
+
 def animate_cat():
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -93,6 +101,7 @@ def animate_cat():
             print("\n".join(create_speech_bubble(CLOSED_EYED_CAT.copy(), task)))
             time.sleep(1)
 
+
 if __name__ == "__main__":
     work_time = input("Set your focus time (in minutes): ")
     work_time = int(work_time)
@@ -104,8 +113,12 @@ if __name__ == "__main__":
     music_files = [f for f in os.listdir('lofimusic') if f.endswith('.mp3')]
     music_files.sort()
 
-    pygame.mixer.music.load('ding.mp3')
-    pygame.mixer.music.set_volume(1.0)
+    try:
+        load_and_play_sound('ding.mp3')
+    except FileNotFoundError as e:
+        print(e)
+        exit(1)
+
     while True:
         timer_thread = threading.Thread(target=start_timer, args=(work_time * 60, break_time * 60,))
         timer_thread.start()
