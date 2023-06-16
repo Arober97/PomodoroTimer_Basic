@@ -1,0 +1,20 @@
+# TODO
+
+## 1. Error Handling:
+- [ ] Check if the 'ding.mp3' file exists before attempting to load and play it. If it doesn't exist, provide a helpful error message.
+- [ ] Check if the directory 'lofimusic' exists and contains any '.mp3' files before attempting to load and play them. If not, provide a helpful error message.
+
+## 2. Code Duplication:
+- [ ] Create a separate function to load and play the 'ding.mp3' sound file. This function should then be called wherever the 'ding' sound is required, reducing code duplication.
+
+## 3. User Input Validation:
+- [ ] Add validation for the user's input for the work time and break time. Ensure that the input is a number, and provide a helpful error message if it's not.
+
+## 4. Pygame Mixer Stop:
+- [ ] Add a check to stop the current sound before starting a new one in the Pygame mixer. This ensures that the 'ding' sound plays as expected.
+
+## 5. Global Variables:
+- [ ] Reduce the use of global variables by encapsulating them within a class or passing them as arguments to the functions that need them.
+
+## 6. Thread Safety:
+- [ ] Consider any possible thread safety issues related to the Global Interpreter Lock (GIL) in Python. Although it's unlikely to be an issue in this script, being aware of it can prevent future problems.
