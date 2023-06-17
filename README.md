@@ -4,28 +4,30 @@ This is a Python app for a Pomodoro study timer designed for people with ADHD. T
 
 ## Installation:
 
-1. Install Python
+### Install Python
 
   1. Visit the official Python website: https://www.python.org
   2. Download the latest version of Python for Windows
   3. Run the installer and follow the installation instructions
   4. Make sure to check the option to add Python to your system's PATH during the installation process
 
-2. Install Pip (Python Package Manager)
+### Install Pip (Python Package Manager)
 
-Open Command Prompt (search for "cmd" in the Start menu)
-Run the following command to download the get-pip.py script:
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+  1. Open Command Prompt (search for "cmd" in the Start menu)
+  2. Run the following command to download the get-pip.py script:
+  ```
+  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+  ```
+  3. Run the following command to install pip:
+  ```
+  python get-pip.py
+  ```
 
-Run the following command to install pip:
-```
-python get-pip.py
-```
-3. Clone the Repository
+### Clone the Repository
 
-Clone this repository to your local machine using Git or download it as a ZIP file and extract it
+  1. Clone this repository to your local machine using Git or download it as a ZIP file and extract it
 
-4. Install Dependencies
+### Install Dependencies
 
   1. Open Command Prompt and navigate to the project directory:
   ```
@@ -36,12 +38,12 @@ Clone this repository to your local machine using Git or download it as a ZIP fi
   pip install pygame
   ```
 
-5. Add .mp3 Files to the 'lofimusic' Directory
+### Add .mp3 Files to the 'lofimusic' Directory
   1. Inside the project directory, create a new directory called 'lofimusic'
   2. Place your desired .mp3 files into the 'lofimusic' directory
   3. Make sure the .mp3 files are suitable for audio playback and named appropriately
 
-6. Run the Application
+### Run the Application
 
   1. In the project directory, locate the 'Pomodoro_Timer_V2.py' file
   2. Double-click the file to run the application
